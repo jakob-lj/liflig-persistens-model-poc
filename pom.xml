@@ -11,6 +11,8 @@
 
     <modules>
         <module>bff</module>
+        <module>domainmodel</module>
+        <module>persistensmodel</module>
     </modules>
 
     <properties>

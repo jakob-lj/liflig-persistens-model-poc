@@ -41,6 +41,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jakoblj.persistens</groupId>
+            <artifactId>domainmodel</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>no.liflig</groupId>
             <artifactId>liflig-logging-http4k</artifactId>
             <version>1.20220523.024655</version>
