@@ -25,6 +25,4 @@ class ComputerSodaRepositoryJdbi(val computerSodaDao: ComputerSodaDao) : Compute
         // TODO!!
         computerSodaDao.delete(id, Version.initial())
     }
-
-
 }
