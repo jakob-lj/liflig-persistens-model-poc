@@ -18,6 +18,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jakoblj.persistens</groupId>
+            <artifactId>domainmodel</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>no.liflig</groupId>
             <artifactId>liflig-document-store</artifactId>
             <version>1.20220605.230130</version>
