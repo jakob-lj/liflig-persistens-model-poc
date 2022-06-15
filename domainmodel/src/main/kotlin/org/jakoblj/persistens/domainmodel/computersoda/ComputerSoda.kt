@@ -1,10 +1,13 @@
 package org.jakoblj.persistens.domainmodel.computersoda
 
+import no.liflig.documentstore.entity.Version
+
 class ComputerSoda(
     val id: ComputerSodaId = ComputerSodaId(),
     val brand: String,
     val flavor: String,
-    val size: Int
+    val size: Int,
+    val version: Version,
 ) {
     companion object {
         fun create(
@@ -15,6 +18,7 @@ class ComputerSoda(
             brand = brand,
             flavor = flavor,
             size = size,
+            version = Version.initial(),
         )
     }
 
@@ -27,5 +31,6 @@ class ComputerSoda(
         brand = brand,
         flavor = flavor,
         size = size,
+        version = version,
     )
 }

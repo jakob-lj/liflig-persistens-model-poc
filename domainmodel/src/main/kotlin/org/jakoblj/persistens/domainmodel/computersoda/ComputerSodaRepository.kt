@@ -1,7 +1,5 @@
-package org.jakoblj.persistens.persistensmodel.computersoda
+package org.jakoblj.persistens.domainmodel.computersoda
 
-import org.jakoblj.persistens.domainmodel.computersoda.ComputerSoda
-import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaId
 
 interface ComputerSodaRepository {
     suspend fun create(item: ComputerSoda): ComputerSoda

@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  pinsjdb:
+    image: postgres:14.3
+    container_name: persistpoc
+    ports:
+      - "127.0.0.1:10101:5432"
+    environment:
+      - POSTGRES_USER=liflig
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=lifligpass
+    volumes:
+      - poc-pgsql-volume:/var/lib/postgresql
+
+volumes:
+  poc-pgsql-volume:
+

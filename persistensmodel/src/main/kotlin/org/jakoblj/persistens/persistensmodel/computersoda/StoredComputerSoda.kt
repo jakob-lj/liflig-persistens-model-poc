@@ -3,18 +3,19 @@ package org.jakoblj.persistens.persistensmodel.computersoda
 import kotlinx.serialization.Serializable
 import no.liflig.documentstore.dao.CrudDaoJdbi
 import no.liflig.documentstore.entity.AbstractEntityRoot
+import no.liflig.documentstore.entity.Version
 import org.jakoblj.persistens.domainmodel.computersoda.ComputerSoda
 import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaId
 
-typealias ComputerSodaDao = CrudDaoJdbi<ComputerSodaId, StoredComputerSoda>
+typealias ComputerSodaDao = CrudDaoJdbi<StoredComputerSodaId, StoredComputerSoda>
 
 @Serializable
 class StoredComputerSoda(
-    override val id: ComputerSodaId = ComputerSodaId(),
+    override val id: StoredComputerSodaId,
     val brand: String,
     val flavor: String,
     val size: Int,
-) : AbstractEntityRoot<ComputerSodaId>() {
+) : AbstractEntityRoot<StoredComputerSodaId>() {
 
     fun update(
         brand: String = this.brand,
@@ -29,15 +30,20 @@ class StoredComputerSoda(
 }
 
 fun ComputerSoda.toStoredComputerSoda() = StoredComputerSoda(
-    id = id,
+    id = id.toStoredComputerSodaId(),
     brand = brand,
     flavor = flavor,
     size = size,
 )
 
-fun StoredComputerSoda.toComputerSoda() = ComputerSoda(
-    id = id,
+fun StoredComputerSoda.toComputerSoda(version: Version) = ComputerSoda(
+    id = id.toComputerSodaId(),
     brand = brand,
     flavor = flavor,
     size = size,
+    version = version,
 )
+
+fun ComputerSodaId.toStoredComputerSodaId() = StoredComputerSodaId(id)
+
+fun StoredComputerSodaId.toComputerSodaId() = ComputerSodaId(id)

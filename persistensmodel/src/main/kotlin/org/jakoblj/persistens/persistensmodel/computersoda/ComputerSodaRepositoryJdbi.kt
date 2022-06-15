@@ -3,26 +3,32 @@ package org.jakoblj.persistens.persistensmodel.computersoda
 import no.liflig.documentstore.entity.Version
 import org.jakoblj.persistens.domainmodel.computersoda.ComputerSoda
 import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaId
+import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaRepository
 
 class ComputerSodaRepositoryJdbi(val computerSodaDao: ComputerSodaDao) : ComputerSodaRepository {
 
     override suspend fun create(item: ComputerSoda): ComputerSoda {
-        return computerSodaDao.create(
+        val computerSoda = computerSodaDao.create(
             item.toStoredComputerSoda()
-        ).item.toComputerSoda()
+        )
+
+        return computerSoda.item.toComputerSoda(computerSoda.version)
     }
 
     override suspend fun get(id: ComputerSodaId): ComputerSoda? {
-        return computerSodaDao.get(id)?.item?.toComputerSoda()
+        val computerSoda = computerSodaDao.get(id.toStoredComputerSodaId())
+
+        return computerSoda?.item?.toComputerSoda(computerSoda.version)
     }
 
     override suspend fun update(item: ComputerSoda): ComputerSoda {
-        // TODO!!
-        return computerSodaDao.update(item.toStoredComputerSoda(), Version.initial().next()).item.toComputerSoda()
+        val computerSoda = computerSodaDao.update(item.toStoredComputerSoda(), item.version)
+
+        return computerSoda.item.toComputerSoda(computerSoda.version)
     }
 
     override suspend fun delete(id: ComputerSodaId) {
         // TODO!!
-        computerSodaDao.delete(id, Version.initial())
+        computerSodaDao.delete(id.toStoredComputerSodaId(), Version.initial())
     }
 }
