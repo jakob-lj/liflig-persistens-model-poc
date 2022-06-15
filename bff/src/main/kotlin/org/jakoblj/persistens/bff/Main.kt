@@ -25,6 +25,7 @@ import org.jakoblj.persistens.persistensmodel.computersoda.StoredComputerSoda
 import org.jakoblj.persistens.persistensmodel.computersoda.StoredComputerSodaId
 import org.jakoblj.persistens.persistensmodel.serialization.storedComputerSodaSerializationAdapter
 import org.jdbi.v3.core.Jdbi
+import java.util.*
 
 fun main() {
 
@@ -37,7 +38,7 @@ fun main() {
     val jdbi = Jdbi.create(HikariDataSource(config))
 
     val computerSodaDao =
-        CrudDaoJdbi<StoredComputerSodaId, StoredComputerSoda>(jdbi, "cs", storedComputerSodaSerializationAdapter)
+        CrudDaoJdbi(jdbi, "cs", storedComputerSodaSerializationAdapter)
 
     val computerSodaRepositoryJdbi = ComputerSodaRepositoryJdbi(computerSodaDao)
 
@@ -56,6 +57,10 @@ fun main() {
             }
         }
     ))
+
+    runBlocking {
+        println(computerSodaDao.get(StoredComputerSodaId(UUID.fromString("a900ebd1-eea5-4542-ae54-dbbbb1c64c4e"))))
+    }
 
     val server = printingApp.asServer(Jetty(9000)).start()
 

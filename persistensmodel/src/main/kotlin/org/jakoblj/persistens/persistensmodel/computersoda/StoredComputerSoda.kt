@@ -10,7 +10,7 @@ import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaId
 typealias ComputerSodaDao = CrudDaoJdbi<StoredComputerSodaId, StoredComputerSoda>
 
 @Serializable
-class StoredComputerSoda(
+data class StoredComputerSoda(
     override val id: StoredComputerSodaId,
     val brand: String,
     val flavor: String,

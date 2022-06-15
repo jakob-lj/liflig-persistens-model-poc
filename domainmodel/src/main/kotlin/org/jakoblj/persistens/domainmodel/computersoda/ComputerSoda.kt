@@ -2,7 +2,7 @@ package org.jakoblj.persistens.domainmodel.computersoda
 
 import no.liflig.documentstore.entity.Version
 
-class ComputerSoda(
+data class ComputerSoda(
     val id: ComputerSodaId = ComputerSodaId(),
     val brand: String,
     val flavor: String,

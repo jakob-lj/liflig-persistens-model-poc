@@ -8,8 +8,11 @@ import org.jakoblj.persistens.domainmodel.computersoda.ComputerSodaRepository
 class ComputerSodaRepositoryJdbi(val computerSodaDao: ComputerSodaDao) : ComputerSodaRepository {
 
     override suspend fun create(item: ComputerSoda): ComputerSoda {
+        println(item)
+        val it = item.toStoredComputerSoda()
+        println(it)
         val computerSoda = computerSodaDao.create(
-            item.toStoredComputerSoda()
+           it
         )
 
         return computerSoda.item.toComputerSoda(computerSoda.version)
